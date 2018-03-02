@@ -38,19 +38,6 @@ const save = () => {
 		}) ;
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 exports.count = () => quizzes.length;
 
 exports.add = (question, answer) => {
@@ -65,17 +52,13 @@ exports.add = (question, answer) => {
 
 exports.update = (id, question, answer) => {
 	const quiz = quizzes[id];
-	if (typeof quiz == "undefined") {
+	if (typeof quiz === "undefined") {
 			throw new Error(`El valor del parametro id no es valido.`); 
 	}
-	quizzes.splice(
-		id,
-		1,
-		{
+	quizzes.splice(id,1,{
 			question: (question || "").trim(),
 			answer: (answer || "").trim()
-		}
-	);
+		});
 	save();
 };
 
@@ -83,7 +66,7 @@ exports.getAll = () => JSON.parse(JSON.stringify(quizzes));
 
 exports.getByIndex = id => {
 	const quiz = quizzes[id];
-	if (typeof quiz == "undefined") {
+	if (typeof quiz === "undefined") {
 			throw new Error(`El valor del parametro id no es valido.`); 
 	}
 	return JSON.parse(JSON.stringify(quiz));
@@ -91,7 +74,7 @@ exports.getByIndex = id => {
 
 exports.deleteByIndex = id => {
 	const quiz = quizzes[id];
-	if (typeof quiz == "undefined") {
+	if (typeof quiz === "undefined") {
 			throw new Error(`El valor del parametro id no es valido.`); 
 	}
 	quizzes.splice(id, 1);
