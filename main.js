@@ -3,6 +3,7 @@
 const readline = require('readline');
 const {log, biglog, errorlog, colorize} = require("./out");
 const cmds = require("./cmds");
+const model= require('./model');
 
 
 
@@ -16,7 +17,7 @@ const rl = readline.createInterface({
     output: process.stdout,
     prompt: colorize("quiz > ", 'blue'),
     completer: (line) => {
-    const completions = 'h help add delete edit list test play p credits q quit '.split(' ');
+             const completions = 'h help add delete edit list test play p credits q quit '.split(' ');
 const hits = completions.filter((c) => c.startsWith(line));
 // show all completions if none found
 return [hits.length ? hits : completions, line];
@@ -26,12 +27,11 @@ return [hits.length ? hits : completions, line];
 rl.prompt();
 
 rl
-    .on('line', (line) => {
+.on('line', (line) => {
 
     let args = line.split(" ");
-let cmd = args[0].toLowerCase().trim();
+    let cmd = args[0].toLowerCase().trim();
 
-let param = args[1];
 
 switch (cmd) {
     case '':
@@ -57,11 +57,11 @@ switch (cmd) {
         break;
 
     case 'show':
-        cmds.showCmd(rl, param);
+        cmds.showCmd(rl, args[1]);
         break;
 
     case 'test':
-        cmds.testCmd(rl, param);
+        cmds.testCmd(rl, args[1]);
         break;
 
     case 'p':
@@ -70,11 +70,11 @@ switch (cmd) {
         break;
 
     case 'delete':
-        cmds.deleteCmd(rl, param);
+        cmds.deleteCmd(rl, args[1]);
         break;
 
     case 'edit':
-        cmds.editCmd(rl, param);
+        cmds.editCmd(rl, args[1]);
         break;
 
     case 'credits':
