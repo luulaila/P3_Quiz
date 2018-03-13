@@ -271,7 +271,7 @@ exports.playCmd = rl => {
 
 exports.creditsCmd = rl => {
     log("Autor de la prÃ¡ctica:");
-    log("Roberto Guerrero ValdÃ©s", 'green');
+    log("Lourdes Manzano Perez", 'green');
     rl.prompt();
 };
 
